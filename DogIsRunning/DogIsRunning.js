@@ -5,11 +5,15 @@ There is a dog. It's running between the friends. From the friend 1 to the frien
 When the dog reaches one of friends it immediately returns to the second one.
 The dog also has some speed.
 Question: Before friends meet, how many times will the dog run between friends?
+-----------------------------------------
 
 To do (my list):
-1. Complete the task. || Done!
-2. Add a description. || Done!
-3. Create animation.  || 
+1. Add task's text.     || 
+2. Add description.     || Done!
+3. Create block-schema. || 
+4. Complete the task.   || Done!
+5. Create form.         || 
+6. Add animations.      || 
 */
 
 'use strict';
