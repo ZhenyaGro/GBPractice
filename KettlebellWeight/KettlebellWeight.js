@@ -9,12 +9,11 @@ Available actions:
 -----------------------------------------
 
 To do (my list):
-1. Add task's text.     || 
+1. Add task's text.     || Done!
 2. Add description.     || Done!
-3. Create block-schema. || 
-4. Complete the task.   || 
-5. Create form.         || 
-6. Add animations.      || 
+3. Complete the task.   || Done!
+4. Create form.         || 
+5. Add animations.      || 
 */
 
 'use strict';
@@ -41,9 +40,8 @@ let actions = {
       alert('The second kettlebell is heavier.');
       return ketWeight2;
     }
-
     alert('The kettlebells have the same weight.');
-    return [ketWeight1, ketWeight2];
+    return ketWeight1;
   },
 
   swapKettlebells(ketNumber1, ketNumber2) {
@@ -59,19 +57,16 @@ let actions = {
   }
 }
 
-let kettlebells = [1, 3, 2, 5, 4];
-/*
+let kettlebells = []; // [1, 3, 5, 2, 4];
 for (let i = 0; i < 5; i++) {
   kettlebells.push(Math.floor(Math.random() * 10) + 1);
 }
-*/
 alert(`The kettlebells: ${kettlebells}.`); // Just show for testing.
 
-// Looking for the heaviest kettlebell.
+// Looking for the heaviest kettlebell:
 actions.rememberWeight(actions.takeKettlebell(1));
 
-kettlebells.forEach((item) => {
-  actions.rememberWeight(actions.compareKettlebells(actions.rememberedWeight, item));
-});
-
-alert(actions.rememberedWeight);
+for (let i = 2; i <= kettlebells.length; i++) {
+  actions.rememberWeight(actions.compareKettlebells([actions.rememberedWeight, actions.takeKettlebell(i)]));
+}
+alert(`The heaviest kettlebell has weight = ${actions.rememberedWeight}`);
