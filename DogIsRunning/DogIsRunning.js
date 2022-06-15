@@ -9,11 +9,10 @@ Question: Before friends meet, how many times will the dog run between friends?
 
 To do (my list):
 1. Add task's text.     || 
-2. Add description.     || Done!
-3. Create block-schema. || 
-4. Complete the task.   || Done!
-5. Create form.         || 
-6. Add animations.      || 
+2. Add description.     || Done! 
+3. Complete the task.   || Done!
+4. Create form.         || 
+5. Add animations.      || 
 */
 
 'use strict';
