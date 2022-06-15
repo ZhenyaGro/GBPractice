@@ -8,7 +8,7 @@ Question: Before friends meet, how many times will the dog run between friends?
 -----------------------------------------
 
 To do (my list):
-1. Add task's text.     || 
+1. Add task's text.     || Done!
 2. Add description.     || Done! 
 3. Complete the task.   || Done!
 4. Create form.         || 
