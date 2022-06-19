@@ -18,12 +18,8 @@ for (let i = 1; i < array.length; i++) {
     maxNumbers.secondMax = maxNumbers.max;
     maxNumbers.max = current;
   }
-
-  if (current < maxNumbers.max) {
-    if (maxNumbers.max == maxNumbers.secondMax) maxNumbers.secondMax = current;
-
-    if (current > maxNumbers.secondMax) maxNumbers.secondMax = current;
-  }
+  if (maxNumbers.max == maxNumbers.secondMax) maxNumbers.secondMax = current;
+  if (current < maxNumbers.max && current > maxNumbers.secondMax) maxNumbers.secondMax = current;
 }
 
 alert(`Max number = ${maxNumbers.max}, the second max number = ${maxNumbers.secondMax}`);
