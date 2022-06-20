@@ -51,7 +51,7 @@ function findWay(start, side, end) {
     return 'Done!';
   }
 
-  function makeMove(position, side) {
+  function makeMove(position) {
     const { x, y } = position;
     const directions = {
       left: { x: x - 1, y: y },
