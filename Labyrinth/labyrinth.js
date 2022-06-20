@@ -6,10 +6,8 @@ Algorithm:
 3. Make the move.
 
 Squares:
-0 - free not visited;
+0 - free square;
 1 - wall (blocked);
-2 - free visited;
-9 - finish.
 */
 
 'use strict';
@@ -17,12 +15,12 @@ Squares:
 // Create labyrinth
 let maze = [
   [1, 1, 1, 1, 1, 1, 1, 1],
-  [1, 1, 1, 1, 0, 0, 1, 1], // Start's here
+  [1, 1, 1, 1, 0, 0, 1, 1], // Start's here, pos: { x: 4, y: 1 }
   [1, 1, 1, 1, 1, 0, 1, 1],
   [1, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 1, 1, 1, 1, 1, 1],
   [1, 0, 0, 0, 0, 0, 0, 1],
-  [1, 1, 1, 1, 1, 1, 0, 1], // End's here
+  [1, 1, 1, 1, 1, 1, 0, 1], // End's here, pos: { x: 6, y: 6 }
   [1, 1, 1, 1, 1, 1, 1, 1]
 ];
 
@@ -36,11 +34,22 @@ function findWay(start, side, end) {
   while (!(currentPos.x == end.x && currentPos.y == end.y)) {
     currentPos = makeMove(currentPos, side);
     turnsCount++;
+    console.log('Position:')
     console.log(currentPos);
-    console.log(lookedSide);
+    console.log('Looked side: ' + lookedSide);
+    console.log('');
+
+    if (turnsCount > 100) {
+      console.log('Freeze protection activated. Either the maze has no ending or it needs more than 100 moves.');
+      alert('Freeze protection activated. Either the maze has no ending or it needs more than 100 moves.');
+      break;
+    }
   }
-  alert('The way was found! Turns: ' + turnsCount);
-  return 'Done!';
+  if (currentPos.x == end.x && currentPos.y == end.y) {
+    console.log("It's a finish!");
+    alert('The way was found! Count of turns: ' + turnsCount);
+    return 'Done!';
+  }
 
   function makeMove(position, side) {
     const { x, y } = position;
@@ -98,5 +107,6 @@ function findWay(start, side, end) {
   }
 }
 
-findWay({ x: 4, y: 1 }, 'down', { x: 6, y: 6 });
 console.log(maze);
+// Let's get started
+findWay({ x: 4, y: 1 }, 'down', { x: 6, y: 6 });
