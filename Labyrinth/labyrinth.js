@@ -14,52 +14,89 @@ Squares:
 
 'use strict';
 
+// Create labyrinth
 let maze = [
-  [1, 1, 1, 1, 1, 1, 1, 1]
+  [1, 1, 1, 1, 1, 1, 1, 1],
   [1, 1, 1, 1, 0, 0, 1, 1], // Start's here
   [1, 1, 1, 1, 1, 0, 1, 1],
   [1, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 1, 1, 1, 1, 1, 1],
   [1, 0, 0, 0, 0, 0, 0, 1],
-  [1, 1, 1, 1, 1, 1, 9, 1], // End's here
+  [1, 1, 1, 1, 1, 1, 0, 1], // End's here
   [1, 1, 1, 1, 1, 1, 1, 1]
 ];
 
-function findWay(start, lookedSide, end) {
-  getTurns({ x: 4, y: 1 }, lookedSide)
+function findWay(start, side, end) {
+  let currentPos = start;
+  let lookedSide = side;
 
-}
+  console.log(currentPos);
 
-function getTurns(currentPos, lookedSide) {
-  const { x, y } = currentPos;
-  const staticDirections = {
-    left: { x: x - 1, y: y },
-    up: { x: x, y: y + 1 },
-    right: { x: x + 1, y: y },
-    down: { x: x, y: y - 1 }
-  };
-  // let changedX, changedY;
-
-  // If 'down'  should be: right, down, left, up
-  // If 'left'  should be: down, left, up, right
-  // If 'up'    should be: left, up, right, down
-  // If 'right' should be: up, right, down, left
-  if (lookedSide == 'down') {
-
-    // changedX = staticDirections.down.x;
-    // changedY = staticDirections.down.y;
-
-    if (maze[changedY][changedX] === 0) return { x: changedX, y: changedY };
+  let turnsCount = 0;
+  while (!(currentPos.x == end.x && currentPos.y == end.y)) {
+    currentPos = makeMove(currentPos, side);
+    turnsCount++;
+    console.log(currentPos);
+    console.log(lookedSide);
   }
+  alert('The way was found! Turns: ' + turnsCount);
+  return 'Done!';
 
+  function makeMove(position, side) {
+    const { x, y } = position;
+    const directions = {
+      left: { x: x - 1, y: y },
+      up: { x: x, y: y - 1 },
+      right: { x: x + 1, y: y },
+      down: { x: x, y: y + 1 }
+    };
+    let checkTurns = {
+      right: function () {
+        if (maze[directions.right.y][directions.right.x] === 0) {
+          lookedSide = 'right';
+          return directions.right;
+        }
+      },
+      down: function () {
+        if (maze[directions.down.y][directions.down.x] === 0) {
+          lookedSide = 'down';
+          return directions.down;
+        }
+      },
+      left: function () {
+        if (maze[directions.left.y][directions.left.x] === 0) {
+          lookedSide = 'left';
+          return directions.left;
+        }
+      },
+      up: function () {
+        if (maze[directions.up.y][directions.up.x] === 0) {
+          lookedSide = 'up';
+          return directions.up;
+        }
+      }
+    };
 
-  cords.push({ x: x, y: y - 1, val: maze[y - 1][x] });
-  cords.push({ x: x, y: y + 1, val: maze[y + 1][x] });
-  cords.push({ x: x - 1, y: y, val: maze[y][x - 1] });
-  cords.push({ x: x + 1, y: y, val: maze[y][x + 1] });
+    // [left, up, right, down, left, up, right];
+    // If 'down'  should be: right, down, left, up
+    // If 'left'  should be: down, left, up, right
+    // If 'up'    should be: left, up, right, down
+    // If 'right' should be: up, right, down, left
 
+    if (lookedSide == 'down') {
+      return checkTurns.right() || checkTurns.down() || checkTurns.left() || checkTurns.up();
+    }
+    if (lookedSide == 'left') {
+      return checkTurns.down() || checkTurns.left() || checkTurns.up() || checkTurns.right();
+    }
+    if (lookedSide == 'up') {
+      return checkTurns.left() || checkTurns.up() || checkTurns.right() || checkTurns.down();
+    }
+    if (lookedSide == 'right') {
+      return checkTurns.up() || checkTurns.right() || checkTurns.down() || checkTurns.left();
+    }
+  }
 }
 
-// console.log(checkPath({ x: 4, y: 1 }, { x: 6, y: 6 }));
 findWay({ x: 4, y: 1 }, 'down', { x: 6, y: 6 });
 console.log(maze);
