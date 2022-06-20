@@ -1,5 +1,5 @@
 /*
-
+Check if there is a way from labyrinth.
 */
 
 'use strict';
