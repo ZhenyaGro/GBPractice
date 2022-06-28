@@ -1,5 +1,7 @@
 # Инструкция по работе с git
 
+Среди проектов, использующих Git — ядро Linux, Swift, Android, Drupal, Cairo, GNU Core Utilities, Mesa, Wine, Chromium, Compiz Fusion, FlightGear, jQuery, PHP, NASM, MediaWiki, DokuWiki, Qt, ряд дистрибутивов Linux.
+
 **git init** – инициализация локального репозитория
 
 **git status** – получить информацию от git о его текущем состоянии
